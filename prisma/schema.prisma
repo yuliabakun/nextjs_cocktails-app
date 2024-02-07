@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -26,56 +23,33 @@ model Token {
   userId        Int     @unique
 }
 
+model Category {
+  id               Int             @id @default(autoincrement()) @map("id")
+  category         String          @map("category")
+  cocktails        Cocktail[]      @relation("CocktailCategory")
+}
+
 model Cocktail {
-  idDrink                     Int     @id @default(autoincrement())
-  strDrink                    String
-  strDrinkAlternate           String?
-  strTags                     String
-  strVideo                    String?
-  strCategory                 String
-  strIBA                      String
-  strAlcoholic                String
-  strGlass                    String
-  strInstructions             String
-  strInstructionsES           String?
-  strInstructionsDE           String
-  strInstructionsFR           String?
-  strInstructionsIT           String
-  strInstructionsZH_HANS      String?
-  strInstructionsZH_HANT      String?
-  strDrinkThumb               String
-  strIngredient1              String
-  strIngredient2              String
-  strIngredient3              String?
-  strIngredient4              String?
-  strIngredient5              String?
-  strIngredient6              String?
-  strIngredient7              String?
-  strIngredient8              String?
-  strIngredient9              String?
-  strIngredient10             String?
-  strIngredient11             String?
-  strIngredient12             String?
-  strIngredient13             String?
-  strIngredient14             String?
-  strIngredient15             String?
-  strMeasure1                 String
-  strMeasure2                 String
-  strMeasure3                 String?
-  strMeasure4                 String?
-  strMeasure5                 String?
-  strMeasure6                 String?
-  strMeasure7                 String?
-  strMeasure8                 String?
-  strMeasure9                 String?
-  strMeasure10                String?
-  strMeasure11                String?
-  strMeasure12                String?
-  strMeasure13                String?
-  strMeasure14                String?
-  strMeasure15                String?
-  strImageSource              String
-  strImageAttribution         String
-  strCreativeCommonsConfirmed String
-  dateModified                String
+  id               String          @id @map("id")
+  drink            String          @map("drink")
+  drinkThumb       String          @map("drinkThumb")
+  imageSource      String?         @map("imageSource")
+  drinkAlternate   String?         @map("drinkAlternate")
+  tags             String?         @map("tags")
+  category         Category        @relation("CocktailCategory", fields: [categoryId], references: [id])
+  categoryId       Int             @map("categoryId")
+  iba              String?         @map("iba")
+  alcoholic        String          @map("alcoholic")
+  glass            String          @map("glass")
+  instructions     String          @map("instructions")
+  ingredients      Ingredient[]
+}
+
+model Ingredient {
+  id               String          @id @default(uuid()) @map("id")
+  ingredient       String          @map("ingredient")
+  measurement      String          @map("measurement")
+  measureType      String          @map("measureType")
+  cocktail         Cocktail?       @relation(fields: [cocktailId], references: [id])
+  cocktailId       String?         @map("cocktailId")
 }

@@ -1,0 +1,11 @@
+.homepage {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+
+  &__aside {
+    grid-column: 1 / 4;
+    background-color: lightblue;
+  }
+}
