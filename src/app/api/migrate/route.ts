@@ -2,6 +2,8 @@
 import { NextResponse } from "next/server";
 import fs from 'fs';
 
+//util route
+
 export async function GET() {
   const pathToFile = 'E:/julia/projects/pet/nextjs_cocktails-app/public/cocktailsData.json';
 
