@@ -2,7 +2,7 @@ import { Ingredient } from "./Ingredient";
 
 export type Cocktail = {
   id: string;
-  drink: string;
+  name: string;
   drinkThumb: string | null;
   imageSource: string | null;
   drinkAlternate: string | null;

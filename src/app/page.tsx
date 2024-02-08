@@ -1,31 +1,12 @@
-import styles from "./page.module.css";
-// import { authenticate } from 
+import styles from './page.module.scss';
+import Searchbar from './components/Searchbar/Searchbar';
 
-export default function Login() {
+export default function Home() {
   return (
-    <main className={styles.main}>
-      <form>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="example@mail.com"
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            required
-          />
-        </div>
-
-        <button type="submit">Sign In</button>
-      </form>
+    <main className={styles.home}>
+      <aside className={styles.aside}>
+        <Searchbar />
+      </aside>
     </main>
   );
-}
+};

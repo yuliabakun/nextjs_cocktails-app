@@ -1,5 +1,4 @@
 export type Ingredient = {
-  ingredient: string;
+  name: string;
   measurement: string | number;
-  measureType: string;
 };

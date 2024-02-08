@@ -4,11 +4,11 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET() {
-  const allIngredients = await prisma.ingredient.findMany({
+  const data = await prisma.ingredient.findMany({
     distinct: ['name'],
   });  
 
-  const data = allIngredients.map(ingredient => ingredient.name);
+  const allIngredients = data.map(ingredient => ingredient.name);
 
-  return NextResponse.json({ data }, { status: 200 });
+  return NextResponse.json({ allIngredients }, { status: 200 });
 }
