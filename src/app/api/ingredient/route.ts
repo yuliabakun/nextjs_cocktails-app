@@ -5,10 +5,10 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   const allIngredients = await prisma.ingredient.findMany({
-    distinct: ['ingredient'],
-  });
+    distinct: ['name'],
+  });  
 
-  const data = allIngredients.map(ingredient => ingredient.ingredient);
+  const data = allIngredients.map(ingredient => ingredient.name);
 
   return NextResponse.json({ data }, { status: 200 });
 }

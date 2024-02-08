@@ -15,41 +15,41 @@ export async function GET() {
     }
   }
 
-  function modifyData(data) {
-    const modifiedCocktails = data.map(cocktail => {
-      const modifiedCocktail = {
-        id: cocktail.idDrink,
-        name: cocktail.strDrink,
-        drinkThumb: cocktail.strDrinkThumb,
-        imageSource: cocktail.strImageSource,
-        drinkAlternate: cocktail.strDrinkAlternate,
-        tags: cocktail.strTags,
-        category: cocktail.strCategory,
-        iba: cocktail.strIBA,
-        alcoholic: cocktail.strAlcoholic,
-        glass: cocktail.strGlass,
-        instructions: cocktail.strInstructions,
-        ingredients: [],
-      };
+  // function modifyData(data) {
+  //   const modifiedCocktails = data.map(cocktail => {
+  //     const modifiedCocktail = {
+  //       id: cocktail.idDrink,
+  //       name: cocktail.strDrink,
+  //       drinkThumb: cocktail.strDrinkThumb,
+  //       imageSource: cocktail.strImageSource,
+  //       drinkAlternate: cocktail.strDrinkAlternate,
+  //       tags: cocktail.strTags,
+  //       category: cocktail.strCategory,
+  //       iba: cocktail.strIBA,
+  //       alcoholic: cocktail.strAlcoholic,
+  //       glass: cocktail.strGlass,
+  //       instructions: cocktail.strInstructions,
+  //       ingredients: [],
+  //     };
 
 
-      for (let i = 1; i <= 15; i++) {
-        const ingredient = cocktail[`strIngredient${i}`];
-        const measurement = cocktail[`strMeasure${i}`];
+  //     for (let i = 1; i <= 15; i++) {
+  //       const ingredient = cocktail[`strIngredient${i}`];
+  //       const measurement = cocktail[`strMeasure${i}`];
 
-        if (ingredient && measurement) {
-          modifiedCocktail.ingredients.push({
-            name: ingredient,
-            measure: measurement.trim(),
-          });
-        }
-      }
+  //       if (ingredient && measurement) {
+  //         modifiedCocktail.ingredients.push({
+  //           name: ingredient,
+  //           measure: measurement.trim(),
+  //         });
+  //       }
+  //     }
 
-      return modifiedCocktail;
-    })
+  //     return modifiedCocktail;
+  //   })
 
-    return modifiedCocktails;
-  }
+  //   return modifiedCocktails;
+  // }
 
   return NextResponse.json({ message: 'Endpoint to modify data' }, { status: 200 });
 }
