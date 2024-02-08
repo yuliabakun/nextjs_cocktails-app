@@ -1,5 +1,5 @@
 import { Category } from '@/app/static/types/Category';
-import { InputLabel, MenuItem, Select } from '@mui/material';
+import { MenuItem, Select } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 type Props = {
