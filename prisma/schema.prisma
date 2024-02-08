@@ -30,8 +30,8 @@ model Category {
 }
 
 model Cocktail {
-  id               String          @id @map("id")
-  drink            String          @map("drink")
+  id               String          @id @default(uuid()) @map("id")
+  name             String          @map("name")
   drinkThumb       String          @map("drinkThumb")
   imageSource      String?         @map("imageSource")
   drinkAlternate   String?         @map("drinkAlternate")
@@ -47,9 +47,8 @@ model Cocktail {
 
 model Ingredient {
   id               String          @id @default(uuid()) @map("id")
-  ingredient       String          @map("ingredient")
+  name             String          @map("name")
   measurement      String          @map("measurement")
-  measureType      String          @map("measureType")
   cocktail         Cocktail?       @relation(fields: [cocktailId], references: [id])
   cocktailId       String?         @map("cocktailId")
 }

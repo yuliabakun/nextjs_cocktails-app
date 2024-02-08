@@ -1,6 +1,6 @@
 import './Header.scss';
 import Image from "next/image";
-import logo from '../../../../public/icons/bartender.svg';
+import logo from '../../../../public/logo.svg';
 import { Button } from "@mui/material";
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';

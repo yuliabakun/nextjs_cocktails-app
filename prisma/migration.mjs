@@ -3,9 +3,9 @@ import fs from 'fs';
 
 const prisma = new PrismaClient();
 
-function readData() {
+function readData(path) {
   try {
-    const data = fs.readFileSync('E:/julia/projects/pet/nextjs_cocktails-app/public/predata.json', 'utf-8');
+    const data = fs.readFileSync(path, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
     console.log(error);
@@ -14,7 +14,8 @@ function readData() {
 }
 
 async function main() {
-  const dataToMigrate = readData();
+  const filePath = 'E:/julia/projects/pet/nextjs_cocktails-app/public/cocktailsData.json';
+  const dataToMigrate = readData(filePath);
 
   try {
     await prisma.ingredient.deleteMany({});
@@ -28,7 +29,7 @@ async function main() {
       const cocktail = await prisma.cocktail.create({
         data: {
           id: cocktailData.id,
-          drink: cocktailData.drink,
+          name: cocktailData.name,
           drinkThumb: cocktailData.drinkThumb,
           imageSource: cocktailData.imageSource,
           drinkAlternate: cocktailData.drinkAlternate,
@@ -44,9 +45,8 @@ async function main() {
       for (const ingredientData of cocktailData.ingredients) {
         await prisma.ingredient.create({
           data: {
-            ingredient: ingredientData.ingredient,
-            measurement: ingredientData.measurement,
-            measureType: ingredientData.measureType || 'oz',
+            name: ingredientData.name,
+            measurement: ingredientData.measure,
             cocktailId: cocktail.id,
           },
         });
@@ -60,5 +60,3 @@ async function main() {
     await prisma.$disconnect();
   }
 }
-
-main();
