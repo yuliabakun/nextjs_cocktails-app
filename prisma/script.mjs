@@ -14,9 +14,6 @@ function readData(path) {
 }
 
 async function main() {
-  const filePath = 'E:/julia/projects/pet/nextjs_cocktails-app/public/cocktailsData.json';
-  const dataToMigrate = readData(filePath);
-
   try {
     await prisma.ingredient.deleteMany({});
     await prisma.cocktail.deleteMany({});

@@ -8,47 +8,60 @@ datasource db {
 }
 
 model User {
-  id              Int      @id @default(autoincrement())
-  name            String?
-  email           String   @unique
-  salt            String
-  hashed_password String
-  token           Token[]
+  id                String              @id @default(uuid())
+  name              String?
+  email             String              @unique
+  salt              String
+  hashed_password   String
+  token             Token[]
+  cocktails         Cocktail[]
+  favoriteCocktails FavouriteCoctails[] @relation("UserFavorites")
 }
 
 model Token {
-  id            Int     @id @default(autoincrement())
+  id            String  @id @default(uuid())
   refresh_token String?
   user          User    @relation(fields: [userId], references: [id])
-  userId        Int     @unique
+  userId        String  @unique
 }
 
 model Category {
-  id               Int             @id @default(autoincrement()) @map("id")
-  category         String          @map("category")
-  cocktails        Cocktail[]      @relation("CocktailCategory")
+  id        Int        @id @default(autoincrement()) @map("id")
+  category  String     @map("category")
+  cocktails Cocktail[] @relation("CocktailCategory")
 }
 
 model Cocktail {
-  id               String          @id @default(uuid()) @map("id")
-  name             String          @map("name")
-  drinkThumb       String          @map("drinkThumb")
-  imageSource      String?         @map("imageSource")
-  drinkAlternate   String?         @map("drinkAlternate")
-  tags             String?         @map("tags")
-  category         Category        @relation("CocktailCategory", fields: [categoryId], references: [id])
-  categoryId       Int             @map("categoryId")
-  iba              String?         @map("iba")
-  alcoholic        String          @map("alcoholic")
-  glass            String          @map("glass")
-  instructions     String          @map("instructions")
-  ingredients      Ingredient[]
+  id                String              @id @default(uuid()) @map("id")
+  name              String              @map("name")
+  drinkThumb        String              @map("drinkThumb")
+  imageSource       String?             @map("imageSource")
+  drinkAlternate    String?             @map("drinkAlternate")
+  tags              String?             @map("tags")
+  category          Category            @relation("CocktailCategory", fields: [categoryId], references: [id])
+  categoryId        Int                 @map("categoryId")
+  iba               String?             @map("iba")
+  alcoholic         String              @map("alcoholic")
+  glass             String              @map("glass")
+  instructions      String              @map("instructions")
+  ingredients       Ingredient[]
+  author            User?               @relation(fields: [authorId], references: [id])
+  authorId          String?             @map("authorId")
+  favoriteCocktails FavouriteCoctails[] @relation("CocktailFavorites")
 }
 
 model Ingredient {
-  id               String          @id @default(uuid()) @map("id")
-  name             String          @map("name")
-  measurement      String          @map("measurement")
-  cocktail         Cocktail?       @relation(fields: [cocktailId], references: [id])
-  cocktailId       String?         @map("cocktailId")
+  id          String    @id @default(uuid()) @map("id")
+  name        String    @map("name")
+  measurement String    @map("measurement")
+  cocktail    Cocktail? @relation(fields: [cocktailId], references: [id])
+  cocktailId  String?   @map("cocktailId")
+}
+
+model FavouriteCoctails {
+  id         String   @id @default(uuid())
+  cocktail   Cocktail @relation("CocktailFavorites", fields: [cocktailId], references: [id])
+  cocktailId String   @map("cocktailId")
+  user       User     @relation("UserFavorites", fields: [userId], references: [id])
+  userId     String   @map("userId")
 }
