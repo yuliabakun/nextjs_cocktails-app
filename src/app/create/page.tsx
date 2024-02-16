@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './page.module.scss';
 
 export default function AddCocktailForm() {
@@ -15,12 +15,12 @@ export default function AddCocktailForm() {
     authorId: '1',
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setCocktailData({ ...cocktailData, [name]: value });
   };
 
-  const handleIngredientChange = (e, id) => {
+  const handleIngredientChange = (e: ChangeEvent<HTMLInputElement>, id: number) => {
     const { name, value } = e.target;
   
     const updatedIngredients = cocktailData.ingredients.map((ingredient) =>
@@ -37,7 +37,7 @@ export default function AddCocktailForm() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
     try {
@@ -55,8 +55,8 @@ export default function AddCocktailForm() {
       } else {
         console.error('Error:', response.statusText);
       }
-    } catch (error) {
-      console.error('Error:', error.message);
+    } catch {
+      console.error('Error sending form');
     }
   };  
 
