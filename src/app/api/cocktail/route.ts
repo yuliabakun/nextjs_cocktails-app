@@ -44,10 +44,12 @@ export async function GET(req: NextRequest) {
 
     const cocktailsId = ingredients.map(item => item.cocktailId);
 
+    const cocktailsIdFiltered = cocktailsId.filter(id => id !== null) as string[];
+
     const cocktails = await prisma.cocktail.findMany({
       where: {
         id: {
-          in: cocktailsId,
+          in: cocktailsIdFiltered,
         }
       }
     })
