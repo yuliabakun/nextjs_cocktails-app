@@ -8,7 +8,15 @@ import { useEffect, useState } from "react";
 //   return res.json();
 // };
 
-export default function CocktailDetails({ params }) {
+interface Params {
+  id: string;
+}
+
+interface Props {
+  params: Params;
+}
+
+export default function CocktailDetails({ params }: Props) {
   const [cocktail, setCocktail] = useState<Cocktail | null>(null);
   const id = params.id;
 
