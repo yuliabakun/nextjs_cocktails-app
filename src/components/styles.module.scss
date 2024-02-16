@@ -1,0 +1,92 @@
+@import '../app/shared/styles/mixin.scss';
+@import '../app/shared/styles/variables.scss';
+
+// Cocktail Card component
+.card {
+  grid-column: span 12;
+  height: 100%;
+  border-radius: 20px;
+  background-color: $whiteSecondary;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include onTablet {
+    grid-column: span 6;
+  }
+
+  @include onDesktop {
+    grid-column: span 4;
+  }
+}
+
+.content {
+  padding: 10px;
+}
+
+.image {
+  padding: 10px;
+  border-radius: 25px;
+  height: 220px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+// Header 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: $whiteSecondary;
+
+  @include onDesktop {
+    padding: 10px 80px;
+  }
+
+  &__logo {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__aside {
+    :not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+// Footer
+.footer {
+  padding: 30px 16px;
+  background-color: whitesmoke;
+}
+
+// Loader
+.loader {
+  grid-column: 1 / -1;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: $accent;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite; 
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

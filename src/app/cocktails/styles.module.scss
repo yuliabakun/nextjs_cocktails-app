@@ -1,0 +1,57 @@
+@import '../shared/styles/variables.scss';
+@import '../shared/styles/mixin.scss';
+
+.cocktailsPage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  margin: 20px 10px;
+
+  @include onDesktop {
+    flex-direction: row;
+  }
+}
+
+// Catalog component
+.catalog {
+  flex: 1 1 75%; 
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
+  row-gap: 40px;
+  margin-inline: 15px;
+
+  &__title {
+    grid-column: 1 / -1;
+  }
+}
+
+// SearchBar Styles 
+.searchbar {
+  flex: 1 0 25%;
+
+  background-color: $whiteSecondary;
+  box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+
+  &__item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}
+
+.actionsGroup {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

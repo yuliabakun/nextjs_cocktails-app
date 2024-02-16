@@ -1,0 +1,45 @@
+@import './shared/styles/mixin.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.home {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  background: url('./shared/media/home-bg-small.jpg') no-repeat center;
+  object-fit: cover;
+  padding: 0 15px;
+  min-height: calc(100vh - 100px);
+
+  @include onTablet {
+    background-image: url('./shared/media/home-bg-large.jpg');
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+
+  &__info {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    :not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    @include onTablet {
+      grid-column: 3 / -1;
+    }
+
+    @include onDesktop {
+      grid-column: 7 / 12;
+    }
+  }
+}
