@@ -6,7 +6,12 @@
   margin: 0;
 }
 
+body {
+  height: 100vh;
+}
+
 .home {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;

@@ -1,5 +1,6 @@
 'use client';
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { createUser } from '../shared/utils/fetchClient';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -9,20 +10,44 @@ export default function Register() {
     repeatPassword: ""
   });
 
-  console.log(formData);
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    if (formData.password !== formData.repeatPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    try {
+      const newUser = {
+        email: formData.email,
+        name: formData.name,
+        password: formData.password,
+      }
+
+      const data = await createUser(newUser);
+
+      console.log(data);
+    } catch (error) {
+      console.error('Error creating user:', error);
+      alert('Error creating user. Please try again.');
+    }
+  };
+
   return (
     <main>
-      <form>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email_register">Email</label>
           <input
             type="email"
             name="email"
+            autoComplete='email'
+            id="email_register"
             placeholder="example@mail.com"
             required
             onChange={handleChange}
@@ -30,31 +55,37 @@ export default function Register() {
         </div>
 
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name_register">Username</label>
           <input
             type="text"
             name="name"
-            placeholder="your name"
+            autoComplete='username'
+            id="name_register"
+            placeholder="your username"
             required
             onChange={handleChange}
           />
         </div>
 
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="pass_register">Password</label>
           <input
             type="password"
+            autoComplete='new-password'
             name="password"
+            id="pass_register"
             required
             onChange={handleChange}
           />
         </div>
 
         <div>
-          <label htmlFor="repeatPassword">Repeat Password</label>
+          <label htmlFor="repeatpass_register">Repeat Password</label>
           <input
             type="password"
+            autoComplete='new-password'
             name="repeatPassword"
+            id="repeatpass_register"
             required
             onChange={handleChange}
           />

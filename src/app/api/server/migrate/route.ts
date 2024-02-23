@@ -2,8 +2,7 @@
 import { NextResponse } from "next/server";
 import fs from 'fs';
 
-// util api route
-// to migrate 
+// util api route for data modification
 
 export async function GET() {
   function readData(path: string) {
