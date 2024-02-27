@@ -4,15 +4,14 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FF5733',
-      // light: will be calculated from palette.primary.main,
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
+      main: '#90CAF9',
+      light: '#E3F2FD',
+      dark: '#42A5F5',
     },
     secondary: {
-      main: '#E0C2FF',
-      light: '#F5EBFF',
-      contrastText: '#47008F',
+      main: '#CE93D8',
+      light: '#F3E5F5',
+      contrastText: '#AB47BC',
     },
   },
 });

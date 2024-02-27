@@ -8,6 +8,7 @@ export default async function Home() {
   return (  
   <main >
     {authSession?.user && <UserInfo user={authSession?.user} />}
+
     {!authSession?.user && ( //(3) 
       <Link href="/login">
         Login

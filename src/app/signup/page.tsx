@@ -1,6 +1,7 @@
 'use client';
 import { ChangeEvent, FormEvent, useState } from "react";
 import { createUser } from '../shared/utils/fetchClient';
+import { signOut } from 'next-auth/react';
 
 export default function Register() {
   const [formData, setFormData] = useState({
